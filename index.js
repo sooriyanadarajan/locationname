@@ -1,15 +1,15 @@
-
 var express = require('express');
-var app = express();
+
+const app = express()
+app.use(express.json())
 const indianCitiesDatabase = require('indian-cities-database');
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
 
+const value = req.body.location
     var cities = indianCitiesDatabase.cities;
-    let a = cities.filter(a => a.city.match('Chen'));
-    console.log(a, 'citylist')
+    let a = cities.filter(a => a.city.match(value));
     res.send(a);
-
 })
 
 var server = app.listen(7000, function () {
